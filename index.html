@@ -1,17 +1,182 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alwan App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Alwan Quote Pro Logo Edition</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#172230;--muted:#667085;--line:#e4e7ec;--brand:#16324f;--soft:#eef2f6;--ok:#137a4b;--danger:#c0392b;--shadow:0 10px 30px rgba(16,24,40,.06)}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f7f9fc 0%,#eef3f9 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+.header{position:sticky;top:0;z-index:80;background:rgba(247,249,252,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.wrap{max-width:1240px;margin:0 auto;padding:14px}
+.brand{display:flex;gap:12px;align-items:center}.brand img{width:64px;height:64px;border-radius:16px;border:1px solid var(--line);background:#fff}
+.brand h1{margin:0;font-size:26px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.sectionhead{display:flex;align-items:center;gap:10px;margin-bottom:12px}.sectionhead img{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:#fff}
+.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}@media (max-width:980px){.layout{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:16px;margin-top:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.watermark{position:absolute;right:10px;top:10px;width:54px;height:54px;opacity:.08;pointer-events:none}
+.row{display:grid;gap:12px}.grid-2{grid-template-columns:1fr 1fr}.grid-4{grid-template-columns:repeat(4,1fr)}@media (max-width:980px){.grid-2,.grid-4{grid-template-columns:1fr}}
+h2{margin:0;font-size:22px}label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px}
+input,select,textarea,button{font:inherit}input,select,textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--ink)}textarea{min-height:96px;resize:vertical}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px}button{border:0;border-radius:14px;padding:12px 16px;background:var(--brand);color:#fff;font-weight:800}button.secondary{background:#fff;color:var(--brand);border:1px solid var(--line)}button.ghost{background:var(--soft);color:var(--ink)}button.ok{background:var(--ok)}button.danger{background:var(--danger)}
+.notice{margin-top:12px;padding:11px 13px;border-radius:14px;border:1px solid #f0d596;background:#fff8e8;color:#8a5a00;font-size:14px}
+.category-chips{display:flex;flex-wrap:wrap;gap:10px}.chip{padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:700;cursor:pointer}.chip.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.tile{border:1px solid var(--line);border-radius:20px;padding:10px;background:#fff;cursor:pointer;transition:.15s transform,.15s box-shadow,.15s border-color}.tile:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(16,24,40,.08)}.tile.active{border-color:var(--brand);box-shadow:0 0 0 2px rgba(22,50,79,.08)}
+.tile img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;border:1px solid var(--line);background:#f5f5f5}.tile .t1{margin-top:8px;font-size:13px;font-weight:800;line-height:1.25;min-height:34px}.tile .t2{margin-top:4px;font-size:12px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media (max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}}.kpi{background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid var(--line);border-radius:18px;padding:14px}.kpi .n{font-size:24px;font-weight:900}.kpi .s{font-size:12px;color:var(--muted);margin-top:4px}
+.checks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}@media (max-width:980px){.checks{grid-template-columns:repeat(2,1fr)}}.chk{display:flex;gap:8px;align-items:center;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:12px}.chk input{width:auto}
+.colorrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}@media (max-width:980px){.colorrow{grid-template-columns:1fr}}
+.items{display:grid;gap:10px}.item{display:grid;grid-template-columns:98px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:20px;padding:10px;background:#fff}
+.item img{width:98px;height:120px;object-fit:cover;border-radius:14px;border:1px solid var(--line);background:#f5f5f5}.item .title{font-weight:900}.item .meta{margin-top:4px;font-size:13px;color:var(--muted)}.item .amt{font-size:19px;font-weight:900;text-align:right}
+.small{font-size:12px;color:var(--muted)}.hidden{display:none}.footer-space{height:30px}
+@media print{.header,.toolbar,.notice,.category-chips,.checks,input[type=file],button{display:none !important} body{background:#fff}.card{box-shadow:none}}
+</style>
 </head>
-<body style="font-family:Arial;text-align:center;background:#f4f4f4">
+<body>
+<div class="header"><div class="wrap"><div class="brand"><img id="headerLogo" src="logo.svg"><div><h1>Alwan Quote Pro Logo Edition</h1><p>Alwan Painting Services Pty Ltd · 0404994400</p></div></div></div></div>
+<div class="wrap">
+<div class="card">
+<img class="watermark" src="logo.svg">
+<div class="sectionhead"><img src="logo.svg"><h2>Controls</h2></div>
+<div class="toolbar">
+<button onclick="newQuote()">New Quote</button>
+<button class="secondary" onclick="saveQuote()">Save Quote</button>
+<button class="secondary" onclick="saveCustomer()">Save Customer</button>
+<button class="ghost" onclick="window.print()">Print / PDF</button>
+<button class="ghost" onclick="exportData()">Export Backup</button>
+<button class="ghost" onclick="document.getElementById('importFile').click()">Import Backup</button>
+<input id="importFile" class="hidden" type="file" accept=".json" onchange="importData(event)">
+</div>
+<div class="notice">Logo added to all main sections and print view.</div>
+</div>
 
-<h1>Alwan Quote Pro</h1>
+<div class="card">
+<img class="watermark" src="logo.svg">
+<div class="sectionhead"><img src="logo.svg"><h2>Quote Details</h2></div>
+<div class="row grid-4">
+<div><label>Quote No.</label><input id="quoteNo"></div>
+<div><label>Date</label><input id="quoteDate" type="date"></div>
+<div><label>Document Type</label><select id="docType"><option>Quote</option><option>Invoice</option></select></div>
+<div><label>Project Type</label><select id="projectType"><option>Interior</option><option>Exterior</option><option>Full House</option></select></div>
+<div><label>Customer Name</label><input id="customerName"></div>
+<div><label>Customer Phone</label><input id="customerPhone"></div>
+<div><label>Customer Email</label><input id="customerEmail"></div>
+<div><label>Site Address</label><input id="siteAddress"></div>
+</div>
+<div style="margin-top:12px"><label>Scope of Works</label><textarea id="scope">Interior painting including walls, ceilings, doors, windows, cornices, handrails, stairs and trims. Surface preparation includes sanding, patching and undercoating where required.</textarea></div>
+</div>
 
-<!-- Logo -->
-<img src="logo.svg" style="width:150px;margin:20px auto;display:block;">
+<div class="layout">
+<div>
+<div class="card">
+<img class="watermark" src="logo.svg">
+<div class="sectionhead"><img src="logo.svg"><h2>Add Item</h2></div>
+<label>Quick Categories</label><div id="chips" class="category-chips"></div>
+<div class="row grid-4" style="margin-top:12px">
+<div><label>Category</label><select id="category" onchange="changeCategory()"></select></div>
+<div><label>Type</label><input id="itemType"></div>
+<div><label>Unit</label><select id="unit"><option>m²</option><option>lm</option><option>each</option></select></div>
+<div><label>Quantity</label><input id="quantity" type="number" step="0.01" value="1"></div>
+<div><label>Base Rate</label><input id="baseRate" type="number" step="0.01" value="0"></div>
+<div><label>Condition</label><select id="condition"><option value="0">Good</option><option value="4">Minor Cracks</option><option value="8">Heavy Repair</option></select></div>
+<div><label>Coats</label><select id="coats"><option value="0">1 coat</option><option value="2">2 coats</option><option value="4">3 coats</option></select></div>
+<div><label>Finish</label><select id="finish"><option value="0">Standard</option><option value="2">Premium Finish</option><option value="4">Gloss / Enamel</option></select></div>
+</div>
+<div class="colorrow" style="margin-top:12px">
+<div><label>Paint Brand</label><select id="paintBrand"><option>Dulux</option><option>Taubmans</option><option>Haymes</option><option>Wattyl</option><option>Solver</option></select></div>
+<div><label>Colour Name</label><input id="colourName"></div>
+<div><label>Colour Picker</label><input id="colourCode" type="color" value="#f5f5f5"></div>
+</div>
+<div class="row grid-4" style="margin-top:12px">
+<div><label>Auto Area Length (m)</label><input id="lengthM" type="number" step="0.01" value="0"></div>
+<div><label>Auto Area Height (m)</label><input id="heightM" type="number" step="0.01" value="0"></div>
+<div><label>Auto Area Result</label><input id="areaResult" readonly></div>
+<div style="align-self:end"><button class="ghost" onclick="calcArea()">Calculate m²</button></div>
+</div>
+<div class="checks" style="margin-top:12px">
+<label class="chk"><input type="checkbox" id="sanding"> Sanding</label>
+<label class="chk"><input type="checkbox" id="patching"> Patching</label>
+<label class="chk"><input type="checkbox" id="undercoat"> Undercoat</label>
+<label class="chk"><input type="checkbox" id="decorative"> Decorative Detail</label>
+<label class="chk"><input type="checkbox" id="highAccess"> High Access</label>
+<label class="chk"><input type="checkbox" id="useSample" checked> Use Sample Photo</label>
+</div>
+<div class="row grid-2" style="margin-top:12px">
+<div><label>Item Notes</label><input id="itemNotes"></div>
+<div><label>Upload Your Photo</label><input id="uploadPhoto" type="file" accept="image/*" onchange="previewUpload(event)"></div>
+</div>
+<div style="margin-top:14px"><label>Category Samples</label><div id="gallery" class="gallery"></div></div>
+<div class="toolbar" style="margin-top:14px">
+<button class="ok" onclick="addItem()">Add Item</button>
+<button class="ghost" onclick="clearItemForm()">Clear Item</button>
+</div>
+</div>
+</div>
 
-<p>App is ready with your logo</p>
+<div>
+<div class="card">
+<img class="watermark" src="logo.svg">
+<div class="sectionhead"><img src="logo.svg"><h2>Summary</h2></div>
+<div class="kpis">
+<div class="kpi"><div class="n" id="subtotalKpi">$0.00</div><div class="s">Subtotal</div></div>
+<div class="kpi"><div class="n" id="gstKpi">$0.00</div><div class="s">GST</div></div>
+<div class="kpi"><div class="n" id="totalKpi">$0.00</div><div class="s">Total</div></div>
+<div class="kpi"><div class="n" id="depositKpi">$0.00</div><div class="s">Deposit</div></div>
+</div>
+<div class="row grid-4" style="margin-top:12px">
+<div><label>Misc Cost</label><input id="miscCost" type="number" value="0" step="0.01" oninput="refreshTotals()"></div>
+<div><label>Discount</label><input id="discount" type="number" value="0" step="0.01" oninput="refreshTotals()"></div>
+<div><label>GST %</label><input id="gstRate" type="number" value="10" step="0.01" oninput="refreshTotals()"></div>
+<div><label>Deposit %</label><input id="depositRate" type="number" value="30" step="0.01" oninput="refreshTotals()"></div>
+</div>
+</div>
 
+<div class="card">
+<img class="watermark" src="logo.svg">
+<div class="sectionhead"><img src="logo.svg"><h2>Quote Items</h2></div>
+<div id="items" class="items"></div>
+</div>
+</div>
+</div>
+
+<div class="footer-space"></div>
+</div>
+
+<script>
+const CATALOG = {"Doors": [{"type": "Flush Horizontal Groove Door", "rate": 150, "unit": "each", "img": "assets/door1.jpeg"}, {"type": "Five Panel Door", "rate": 170, "unit": "each", "img": "assets/door2.jpeg"}, {"type": "Two Panel Designer Door", "rate": 165, "unit": "each", "img": "assets/door3.jpeg"}, {"type": "Modern Line Detail Door", "rate": 180, "unit": "each", "img": "assets/door4.jpeg"}, {"type": "Plain Flush Door", "rate": 120, "unit": "each", "img": "assets/door5.jpeg"}, {"type": "Four Panel Door", "rate": 160, "unit": "each", "img": "assets/door6.jpeg"}], "Windows": [{"type": "Classic Timber Window", "rate": 145, "unit": "each", "img": "assets/window1.jpeg"}, {"type": "Double Hung Window", "rate": 135, "unit": "each", "img": "assets/window2.jpeg"}, {"type": "Sliding Window", "rate": 120, "unit": "each", "img": "assets/window2.jpeg"}, {"type": "Decorative Window", "rate": 165, "unit": "each", "img": "assets/window1.jpeg"}], "Ceilings": [{"type": "Flat Ceiling", "rate": 13, "unit": "m\u00b2", "img": "assets/ceiling-chart.jpeg"}, {"type": "Coffered Ceiling", "rate": 22, "unit": "m\u00b2", "img": "assets/ceiling-chart.jpeg"}, {"type": "Tray Ceiling", "rate": 18, "unit": "m\u00b2", "img": "assets/ceiling-chart.jpeg"}, {"type": "Drop Ceiling", "rate": 16, "unit": "m\u00b2", "img": "assets/ceiling-chart.jpeg"}, {"type": "Vaulted / Cathedral Ceiling", "rate": 24, "unit": "m\u00b2", "img": "assets/ceiling-chart.jpeg"}, {"type": "Decorative / Custom Ceiling", "rate": 28, "unit": "m\u00b2", "img": "assets/ceiling-chart.jpeg"}], "Cornices": [{"type": "Standard Cornice", "rate": 14, "unit": "lm", "img": "assets/cornice1.svg"}, {"type": "Decorative Cornice", "rate": 18, "unit": "lm", "img": "assets/cornice2.svg"}, {"type": "Ornate Cornice", "rate": 24, "unit": "lm", "img": "assets/cornice3.svg"}], "Handrails": [{"type": "Simple Handrail", "rate": 35, "unit": "lm", "img": "assets/handrail1.svg"}, {"type": "Decorative Handrail", "rate": 55, "unit": "lm", "img": "assets/handrail2.svg"}, {"type": "Modern Balustrade", "rate": 65, "unit": "lm", "img": "assets/handrail3.svg"}], "Stairs": [{"type": "Standard Stair", "rate": 35, "unit": "each", "img": "assets/stairs1.svg"}, {"type": "Feature Stair", "rate": 55, "unit": "each", "img": "assets/stairs2.svg"}, {"type": "Riser + Tread", "rate": 45, "unit": "each", "img": "assets/stairs3.svg"}]};
+let state = {items:[], selectedSample:'', uploadedImage:''};
+function $(id){return document.getElementById(id)}
+function money(n){return '$'+(Number(n)||0).toFixed(2)}
+function init(){
+ const cat=$('category'); Object.keys(CATALOG).forEach(name=>{const o=document.createElement('option');o.value=name;o.textContent=name;cat.appendChild(o);});
+ $('category').value='Doors'; $('quoteDate').value=new Date().toISOString().slice(0,10); $('quoteNo').value='Q-'+Date.now().toString().slice(-6);
+ renderChips(); renderGallery(); renderItems(); refreshTotals();
+}
+function renderChips(){const box=$('chips'); box.innerHTML=''; Object.keys(CATALOG).forEach(name=>{const chip=document.createElement('button'); chip.type='button'; chip.className='chip'+($('category').value===name?' active':''); chip.textContent=name; chip.onclick=()=>{$('category').value=name; changeCategory();}; box.appendChild(chip);});}
+function changeCategory(){$('itemType').value=''; state.selectedSample=''; renderChips(); renderGallery();}
+function renderGallery(){const samples=CATALOG[$('category').value] || []; const box=$('gallery'); box.innerHTML=''; samples.forEach((s,i)=>{const tile=document.createElement('div'); tile.className='tile'+(state.selectedSample===s.img?' active':''); tile.innerHTML=`<img src="${s.img}"><div class="t1">${s.type}</div><div class="t2">${money(s.rate)} / ${s.unit}</div>`; tile.onclick=()=>{state.selectedSample=s.img;$('itemType').value=s.type;$('baseRate').value=s.rate;$('unit').value=s.unit;renderGallery();}; box.appendChild(tile); if(i===0 && !$('itemType').value){state.selectedSample=s.img;$('itemType').value=s.type;$('baseRate').value=s.rate;$('unit').value=s.unit;}});}
+function previewUpload(event){const file=event.target.files[0]; if(!file) return; const reader=new FileReader(); reader.onload=()=>state.uploadedImage=reader.result; reader.readAsDataURL(file);}
+function calcArea(){const l=Number($('lengthM').value||0), h=Number($('heightM').value||0), a=l*h; $('areaResult').value=a?a.toFixed(2)+' m²':''; if(a>0){$('quantity').value=a.toFixed(2); $('unit').value='m²';}}
+function brandAdj(){const b=$('paintBrand').value; if(b==='Dulux'||b==='Haymes') return 2; if(b==='Taubmans') return 1.5; if(b==='Wattyl') return 1; return .5;}
+function colourAdj(){return $('colourCode').value.toLowerCase()==='#000000'?1:0;}
+function extrasCost(q){let e=0; if($('sanding').checked)e+=3*q; if($('patching').checked)e+=4*q; if($('undercoat').checked)e+=2*q; if($('decorative').checked)e+=5*q; if($('highAccess').checked)e+=6*q; e+=Number($('condition').value||0)*q; e+=Number($('coats').value||0)*q; e+=Number($('finish').value||0)*q; e+=brandAdj()*q; e+=colourAdj()*q; return e;}
+function addItem(){
+ const qty=Number($('quantity').value||0), rate=Number($('baseRate').value||0), type=$('itemType').value.trim(); if(!type||!qty){alert('Please choose an item type and quantity.'); return;}
+ const extra=extrasCost(qty), total=qty*rate+extra, image=state.uploadedImage || ($('useSample').checked?state.selectedSample:'logo.svg');
+ state.items.push({id:Date.now()+Math.random(), category:$('category').value, type, unit:$('unit').value, qty, rate, extra, total, notes:$('itemNotes').value, image, paintBrand:$('paintBrand').value, colourName:$('colourName').value, colourCode:$('colourCode').value});
+ renderItems(); refreshTotals(); clearItemForm();
+}
+function clearItemForm(){$('quantity').value=1;$('itemNotes').value='';$('uploadPhoto').value='';$('lengthM').value=0;$('heightM').value=0;$('areaResult').value='';$('colourName').value='';$('colourCode').value='#f5f5f5';['sanding','patching','undercoat','decorative','highAccess'].forEach(id=>$(id).checked=false);state.uploadedImage='';}
+function renderItems(){const box=$('items'); box.innerHTML=''; if(!state.items.length){box.innerHTML='<div class="small">No items yet.</div>'; return;} state.items.forEach(item=>{const row=document.createElement('div'); row.className='item'; row.innerHTML=`<img src="${item.image||'logo.svg'}"><div><div class="title">${item.type}</div><div class="meta">${item.category} · ${item.qty} ${item.unit} × ${money(item.rate)} · Extras ${money(item.extra)}</div><div class="meta"><span style="display:inline-block;width:14px;height:14px;border-radius:999px;border:1px solid #bbb;vertical-align:middle;margin-right:6px;background:${item.colourCode||'#fff'}"></span>${item.paintBrand||''} ${item.colourName||''}</div>${item.notes?`<div class="meta">${item.notes}</div>`:''}</div><div><div class="amt">${money(item.total)}</div><button class="danger" style="margin-top:8px" onclick="removeItem(${item.id})">Delete</button></div>`; box.appendChild(row);});}
+function removeItem(id){state.items=state.items.filter(x=>x.id!==id);renderItems();refreshTotals();}
+function refreshTotals(){const subtotal=state.items.reduce((s,i)=>s+i.total,0)+Number($('miscCost').value||0)-Number($('discount').value||0); const gst=Math.max(0,subtotal)*(Number($('gstRate').value||0)/100), total=subtotal+gst, deposit=total*(Number($('depositRate').value||0)/100); $('subtotalKpi').textContent=money(subtotal); $('gstKpi').textContent=money(gst); $('totalKpi').textContent=money(total); $('depositKpi').textContent=money(deposit);}
+function saveCustomer(){const customer={name:$('customerName').value.trim(),phone:$('customerPhone').value.trim(),email:$('customerEmail').value.trim(),address:$('siteAddress').value.trim()}; if(!customer.name){alert('Enter customer name first.');return;} const arr=JSON.parse(localStorage.getItem('alwan_customers')||'[]'); const idx=arr.findIndex(x=>x.name.toLowerCase()===customer.name.toLowerCase()); if(idx>=0)arr[idx]=customer; else arr.unshift(customer); localStorage.setItem('alwan_customers', JSON.stringify(arr)); alert('Customer saved on this device.');}
+function saveQuote(){const arr=JSON.parse(localStorage.getItem('alwan_quotes')||'[]'); arr.unshift({quoteNo:$('quoteNo').value,date:$('quoteDate').value,customer:$('customerName').value,items:state.items}); localStorage.setItem('alwan_quotes', JSON.stringify(arr)); alert('Quote saved on this device.');}
+function exportData(){const payload={customers:JSON.parse(localStorage.getItem('alwan_customers')||'[]'),quotes:JSON.parse(localStorage.getItem('alwan_quotes')||'[]')}; const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='alwan-backup.json'; a.click();}
+function importData(event){const file=event.target.files[0]; if(!file) return; const reader=new FileReader(); reader.onload=()=>{try{const data=JSON.parse(reader.result); if(data.customers)localStorage.setItem('alwan_customers',JSON.stringify(data.customers)); if(data.quotes)localStorage.setItem('alwan_quotes',JSON.stringify(data.quotes)); alert('Backup imported.');}catch(e){alert('Invalid backup file.');}}; reader.readAsText(file);}
+function newQuote(){location.reload();}
+init();
+</script>
 </body>
 </html>
