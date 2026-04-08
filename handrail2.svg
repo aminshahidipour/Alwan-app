@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750">
+<rect width="600" height="750" rx="32" fill="#fff8e8"/>
+<rect x="25" y="25" width="550" height="700" rx="24" fill="#ffffff" stroke="#d0d5dd" stroke-width="3"/>
+<rect x="90" y="220" width="420" height="260" rx="18" fill="#fff8e8" stroke="#cfd8e3" stroke-width="3"/>
+<text x="300" y="570" text-anchor="middle" font-family="Arial" font-size="42" font-weight="700" fill="#16324f">Handrail</text>
+<text x="300" y="620" text-anchor="middle" font-family="Arial" font-size="30" fill="#667085">Decorative</text>
+</svg>
