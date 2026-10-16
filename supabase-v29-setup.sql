@@ -1,0 +1,20 @@
+-- Alwan Painting v29 setup: run once in Supabase SQL Editor
+create table if not exists public.site_images (slot text primary key, image_url text not null, updated_at timestamptz default now());
+alter table public.site_images enable row level security;
+drop policy if exists "public read site images" on public.site_images;
+create policy "public read site images" on public.site_images for select using (true);
+drop policy if exists "admin manage site images" on public.site_images;
+create policy "admin manage site images" on public.site_images for all to authenticated using (auth.uid() = '61351ab0-070a-49ee-99dc-9996a551ce07'::uuid) with check (auth.uid() = '61351ab0-070a-49ee-99dc-9996a551ce07'::uuid);
+create table if not exists public.site_settings (key text primary key, value text not null default '', updated_at timestamptz default now());
+alter table public.site_settings enable row level security;
+drop policy if exists "public read site settings" on public.site_settings;
+create policy "public read site settings" on public.site_settings for select using (true);
+drop policy if exists "admin manage site settings" on public.site_settings;
+create policy "admin manage site settings" on public.site_settings for all to authenticated using (auth.uid() = '61351ab0-070a-49ee-99dc-9996a551ce07'::uuid) with check (auth.uid() = '61351ab0-070a-49ee-99dc-9996a551ce07'::uuid);
+insert into storage.buckets (id,name,public) values ('site-images','site-images',true) on conflict (id) do update set public=true;
+drop policy if exists "public read site images" on storage.objects;
+create policy "public read site images" on storage.objects for select using (bucket_id='site-images');
+drop policy if exists "admin upload site images" on storage.objects;
+create policy "admin upload site images" on storage.objects for insert to authenticated with check (bucket_id='site-images' and auth.uid()='61351ab0-070a-49ee-99dc-9996a551ce07'::uuid);
+drop policy if exists "admin update site images" on storage.objects;
+create policy "admin update site images" on storage.objects for update to authenticated using (bucket_id='site-images' and auth.uid()='61351ab0-070a-49ee-99dc-9996a551ce07'::uuid) with check (bucket_id='site-images' and auth.uid()='61351ab0-070a-49ee-99dc-9996a551ce07'::uuid);

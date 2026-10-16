@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alwan Painting Project Gallery</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{margin:0;font-family:Arial,sans-serif;color:#09264d;background:#f6f8fb}header{background:#09264d;color:white;padding:20px;text-align:center}
+.wrap{max-width:1100px;margin:auto;padding:28px 18px}a{color:#ff6b00;font-weight:700}h1{font-size:clamp(32px,6vw,54px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 8px 28px #0001}.card img{width:100%;height:260px;object-fit:cover}
+.card div{padding:18px}.empty{padding:40px;background:white;border-radius:18px;text-align:center}
+</style><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QT8QRK4WZM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QT8QRK4WZM');
+</script>
+</head><body>
+<header><strong>ALWAN PAINTING</strong></header><main class="wrap"><a href="index.html">← Back to Home</a>
+<h1 id="title">Project Gallery</h1><div id="grid" class="grid"></div></main>
+<script>
+const sb=supabase.createClient('https://mckafemhcuxnxczbmxrn.supabase.co','sb_publishable_6GKjxhcfxuyzQSVvJmuf_g_6o1Ha91P');
+const p=new URLSearchParams(location.search), category=p.get('category')||'exterior', subcategory=p.get('subcategory')||'';
+const labels={exterior:'Exterior Painting',interior:'Interior Painting',residential:'Residential Painting',commercial:'Commercial Painting',deck:'Deck Restoration',roof:'Roof Painting & Pointing'};
+const subLabels={houses:'Houses',apartments:'Apartments','nursing-homes':'Nursing Homes'};
+document.getElementById('title').textContent=subLabels[subcategory] ? subLabels[subcategory]+' Projects' : (labels[category]||'Project Gallery');
+(async()=>{
+ const {data,error}=await sb.from('projects').select('*').eq('category',labels[category]||category).eq('is_published',true).order('created_at',{ascending:false});
+ const grid=document.getElementById('grid');
+ if(category==='residential' && subcategory==='houses'){
+   const c=document.createElement('article'); c.className='card';
+   c.innerHTML=`<img src="project-images/houses/house-before-after-01.jpg" alt="House exterior painting before and after"><div><h3>House Exterior Painting — Before & After</h3><p>Melbourne</p><p>Exterior repaint transformation by Alwan Painting.</p></div>`;
+   grid.appendChild(c);
+ }
+ if(error){if(!grid.children.length)grid.innerHTML='<div class="empty">Gallery is being prepared.</div>';return}
+ if(!data?.length){if(!grid.children.length)grid.innerHTML='<div class="empty">More completed projects will be added here soon.</div>';return}
+ data.filter(x=>!subcategory || !x.subcategory || x.subcategory===subcategory).forEach(x=>{
+   let imgs=[]; if(Array.isArray(x.images)) imgs=x.images; if(x.cover_image) imgs=[x.cover_image,...imgs.filter(i=>i!==x.cover_image)];
+   imgs.forEach((im,i)=>{const c=document.createElement('article');c.className='card';c.innerHTML=`<img src="${im}" alt="${x.title||labels[category]}"><div><h3>${x.title||labels[category]}</h3><p>${x.suburb||''}</p><p>${x.description||''}</p></div>`;grid.appendChild(c)})
+ });
+})();
+</script></body></html>
