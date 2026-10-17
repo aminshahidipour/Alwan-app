@@ -1,0 +1,1 @@
+Created 15 clickable service subcategory pages under projects/. Each thumbnail on the Services section now opens its dedicated page. Pages load published real project photos from the existing Supabase projects database for the parent service category.
