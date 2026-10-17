@@ -1,0 +1,8 @@
+PROJECT PHOTO UPLOAD
+1. First run supabase-v36-subcategory-setup.sql once in Supabase SQL Editor.
+2. Open /admin.html on your live website and sign in.
+3. Add Project: choose Category and the matching Subcategory (Houses, Apartments, Offices, etc.).
+4. Add title, suburb, description and select one or more project photos.
+5. Keep Published selected and click SAVE PROJECT.
+6. The photos will automatically appear only on the matching service page.
+7. Visitors can click a gallery photo to view it larger.
